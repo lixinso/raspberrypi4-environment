@@ -1,4 +1,4 @@
-
+# https://qengineering.eu/install-ubuntu-18.04-on-raspberry-pi-4.html
 
 
 # to get your administation in order
