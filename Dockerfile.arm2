@@ -1,0 +1,75 @@
+# Originally forked from: git@github.com:gasi/docker-node-hello.git
+
+FROM arm64v8/ubuntu:16.04
+
+LABEL "maintainer"="spino327@gmail.com"
+LABEL "description"="Build of pytorch-0.4.0 for arm64v8."
+LABEL "version"="0.4.0"
+
+USER root
+
+####################
+# Installing dependencies
+####################
+RUN apt-get -y update
+
+RUN apt-get install -y git
+RUN apt-get install -y gcc
+
+
+RUN apt-get -y install python3-pip python3-numpy swig python3-dev python3-yaml python3-setuptools 
+RUN apt-get -y install libopenblas-dev cython libatlas-dev m4 libblas-dev libffi-dev
+RUN pip3 install wheel setuptools typing pyyaml cffi
+RUN pip3 install numpy==1.14.3  --upgrade
+
+####################
+# Installing build of pytorch
+####################
+ENV AP /tmp/pytorch_files
+RUN mkdir -p $AP
+
+# copying files
+ADD ./install_pytorch_files/torch-0.4.0a0+200fb22-cp35-cp35m-linux_aarch64.whl $AP/
+WORKDIR $AP
+
+RUN pip3 install torch-0.4.0a0+200fb22-cp35-cp35m-linux_aarch64.whl 
+
+
+# New by Xinsong from x86
+
+RUN mkdir /myworkdir
+VOLUME ["/myworkdir"]
+WORKDIR /myworkdir
+
+RUN apt install -y git
+RUN apt install -y python3
+RUN apt install -y python3-dev
+RUN apt install -y python3-pip
+
+RUN apt-get install -y libtiff5-dev libjpeg8-dev libopenjp2-7-dev zlib1g-dev     libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk     libharfbuzz-dev libfribidi-dev libxcb1-dev
+
+
+RUN pip3 install --upgrade pip
+
+COPY ./install_opencv.arm2.sh /tmp/
+COPY ./requirements.arm2.txt /tmp/
+COPY ./install.arm2.sh /tmp/
+RUN chmod 777 /tmp/install_opencv.arm2.sh && /tmp/install_opencv.arm2.sh
+RUN chmod 777 /tmp/install.arm2.sh && /tmp/install.arm2.sh
+
+RUN pip3 install boto3
+RUN pip3 install more-itertools
+
+RUN apt update -y && apt install -y vim && apt install -y pandoc-citeproc && apt install -y pandoc
+
+
+#COPY ./start-notebook.sh /tmp/start-notebook.sh
+#RUN chmod +x /tmp/start-notebook.sh
+#CMD ["/tmp/start-notebook.sh"]
+
+
+####################
+# Entry point
+####################
+CMD [ "/bin/bash" ]
+
