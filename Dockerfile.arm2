@@ -1,6 +1,6 @@
 # Originally forked from: git@github.com:gasi/docker-node-hello.git
 
-FROM arm64v8/ubuntu:16.04
+FROM arm64v8/ubuntu:18.04
 
 LABEL "maintainer"="spino327@gmail.com"
 LABEL "description"="Build of pytorch-0.4.0 for arm64v8."
@@ -18,7 +18,7 @@ RUN apt-get install -y gcc
 
 
 RUN apt-get -y install python3-pip python3-numpy swig python3-dev python3-yaml python3-setuptools 
-RUN apt-get -y install libopenblas-dev cython libatlas-dev m4 libblas-dev libffi-dev
+RUN apt-get -y install libopenblas-dev cython m4 libatlas-base-dev libffi-dev
 RUN pip3 install wheel setuptools typing pyyaml cffi
 RUN pip3 install numpy==1.14.3  --upgrade
 
@@ -32,7 +32,7 @@ RUN mkdir -p $AP
 ADD ./install_pytorch_files/torch-0.4.0a0+200fb22-cp35-cp35m-linux_aarch64.whl $AP/
 WORKDIR $AP
 
-RUN pip3 install torch-0.4.0a0+200fb22-cp35-cp35m-linux_aarch64.whl 
+#RUN pip3 install torch-0.4.0a0+200fb22-cp35-cp35m-linux_aarch64.whl 
 
 
 # New by Xinsong from x86

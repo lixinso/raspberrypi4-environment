@@ -1,5 +1,7 @@
 # https://pysource.com/2019/08/26/install-opencv-4-1-on-nvidia-jetson-nano/
 
+# works in Raspberry Pi 4 host sys Ubuntu 18. Not working inside ubuntu 16 inside docker
+
 apt update
 apt install -y build-essential cmake git libgtk2.0-dev pkg-config  libswscale-dev libtbb2 libtbb-dev
 apt install -y python-dev python3-dev python-numpy python3-numpy
@@ -38,5 +40,5 @@ cmake     -D WITH_CUDA=ON \
         -D CMAKE_INSTALL_PREFIX=/usr/local ..
 
 
-#make -j4
-#make install
+make -j4
+make install

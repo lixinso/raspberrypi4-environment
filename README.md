@@ -2,9 +2,9 @@
 
 # Setup Ubuntu 16 Arm Docker on Raspberry Pi. The host OS is Ubuntu 18 on Raspberry Pi.
 
-To Run PyTorch
+- To Run PyTorch, Jupyter Notebook
 
-Not fully working yet
+- Not fully working yet
 
 # References
 
