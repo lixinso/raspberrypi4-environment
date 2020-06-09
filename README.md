@@ -1,6 +1,8 @@
 # raspberrypi4-environment
 
-# Install Ubuntu 18 ARM64 on RaspberryPi 4 8G
+# Install Ubuntu 20 ARM64 on RaspberryPi 4 8GB RAM
+
+Ubuntu 18 doesn't work well with 8Gb version
 
 Download https://ubuntu.com/download/raspberry-pi
 
