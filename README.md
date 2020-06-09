@@ -1,5 +1,9 @@
 # raspberrypi4-environment
 
+# Install Ubuntu 18 ARM64 on RaspberryPi 4 8G
+
+Download https://ubuntu.com/download/raspberry-pi
+
 # Setup Ubuntu 16 Arm Docker on Raspberry Pi. The host OS is Ubuntu 18 on Raspberry Pi.
 
 - To Run PyTorch, Jupyter Notebook
