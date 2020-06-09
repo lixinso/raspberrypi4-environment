@@ -4,6 +4,8 @@
 
 Download https://ubuntu.com/download/raspberry-pi
 
+Steps: https://ubuntu.com/tutorials/create-an-ubuntu-image-for-a-raspberry-pi-on-macos#1-overview
+
 # Setup Ubuntu 16 Arm Docker on Raspberry Pi. The host OS is Ubuntu 18 on Raspberry Pi.
 
 - To Run PyTorch, Jupyter Notebook
