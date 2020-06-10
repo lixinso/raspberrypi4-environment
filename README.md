@@ -10,6 +10,11 @@ Steps: https://ubuntu.com/tutorials/create-an-ubuntu-image-for-a-raspberry-pi-on
 
 # Setup Ubuntu 16 Arm Docker on Raspberry Pi. The host OS is Ubuntu 18 on Raspberry Pi.
 
+```
+# apt update && apt upgrade
+# apt install -y docker.io
+```
+
 - To Run PyTorch, Jupyter Notebook
 
 - Not fully working yet
