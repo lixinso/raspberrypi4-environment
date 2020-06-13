@@ -25,19 +25,7 @@ RUN apt install -y python3-pip
 RUN apt-get -y install python3-pip python3-numpy swig python3-dev python3-yaml python3-setuptools 
 RUN apt-get -y install libopenblas-dev cython m4 libatlas-base-dev libffi-dev
 RUN pip3 install wheel setuptools typing pyyaml cffi
-#RUN pip3 install numpy==1.14.3  --upgrade
 
-####################
-# Installing build of pytorch
-####################
-ENV AP /tmp/pytorch_files
-RUN mkdir -p $AP
-
-# copying files
-ADD ./install_pytorch_files/torch-0.4.0a0+200fb22-cp35-cp35m-linux_aarch64.whl $AP/
-WORKDIR $AP
-
-#RUN pip3 install torch-0.4.0a0+200fb22-cp35-cp35m-linux_aarch64.whl 
 
 
 # New by Xinsong from x86
@@ -51,9 +39,6 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get -y install tzdata
 RUN apt install -y systemd
 RUN apt install -y dbus
 
-#ADD install_tzdata.sh /tmp/install_tzdata.sh
-#RUN chmod -R 777 /tmp/install_tzdata.sh && /tmp/install_tzdata.sh
-
 RUN apt-get install -y libtiff5-dev libjpeg8-dev libopenjp2-7-dev zlib1g-dev     libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python3-tk     libharfbuzz-dev libfribidi-dev libxcb1-dev
 
 
@@ -61,18 +46,10 @@ RUN pip3 install --upgrade pip
 
 RUN apt update && apt install -y python3-opencv
 
-#COPY ./install_opencv.arm2.sh /tmp/
-#COPY ./requirements.arm2.txt /tmp/
-#COPY ./install.arm2.sh /tmp/
-#RUN chmod 777 /tmp/install_opencv.arm2.sh && /tmp/install_opencv.arm2.sh
-#RUN chmod 777 /tmp/install.arm2.sh && /tmp/install.arm2.sh
-
-
 RUN pip3 install jupyter
 RUN pip3 install matplotlib
 
 
-#RUN pip3 install numpy
 RUN pip3 install pillow
 RUN pip3 install tqdm
 RUN pip3 install pydicom==1.2.2
@@ -101,6 +78,25 @@ RUN pip3 install h5py
 RUN pip3 install ipykernel
 RUN pip3 install bokeh
 RUN pip3 install pickleshare
+
+RUN apt install -y libopenblas-dev libblas-dev m4 cmake cython python3-dev python3-yaml python3-setuptools
+
+#RUN export NO_CUDA=1 && export NO_DISTRIBUTED=1 && export NO_MKLDNN=1  && export NO_NNPACK=1 && export NO_QNNPACK=1 && mkdir pytorch_install && cd pytorch_install && git clone --recursive https://github.com/pytorch/pytorch && cd pytorch && python3 setup.py build
+#install pytorch
+#https://medium.com/hardware-interfacing/how-to-install-pytorch-v4-0-on-raspberry-pi-3b-odroids-and-other-arm-based-devices-91d62f2933c7
+
+
+####################
+# Installing build of pytorch
+####################
+ENV AP /tmp/pytorch_files
+RUN mkdir -p $AP
+
+# copying files
+ADD ./install_pytorch_files/torch-0.4.0a0+200fb22-cp35-cp35m-linux_aarch64.whl $AP/
+WORKDIR $AP
+
+#RUN pip3 install torch-0.4.0a0+200fb22-cp35-cp35m-linux_aarch64.whl 
 
 #COPY ./start-notebook.sh /tmp/start-notebook.sh
 #RUN chmod +x /tmp/start-notebook.sh
