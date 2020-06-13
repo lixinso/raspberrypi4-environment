@@ -11,3 +11,6 @@ python3 setup.py install --user
 
 # NOT WORKING
 
+
+# --------------------
+Other options: https://hub.docker.com/r/shenxn/pytorch-pi
